@@ -1,0 +1,36 @@
+SCOTT>SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+--------                                                                                                                                                                                                
+22/05/22                                                                                                                                                                                                
+
+SCOTT>SELECT SYSDATE-1 绢力, SYSDATE 坷疵, SYSDATE+1 郴老
+  2  FROM DUAL;
+
+绢力     坷疵     郴老                                                                                                                                                                                  
+-------- -------- --------                                                                                                                                                                              
+22/05/21 22/05/22 22/05/23                                                                                                                                                                              
+
+SCOTT>SELECT ENAME, TRUNC(SYSDATE-HIREDATE)||'老' 辟公老荐
+  2  FROM EMP;
+
+ENAME      辟公老荐                                                                                                                                                                                     
+---------- --------------------------------------------------------------------------------------                                                                                                       
+SMITH      15131老                                                                                                                                                                                      
+ALLEN      15066老                                                                                                                                                                                      
+WARD       15064老                                                                                                                                                                                      
+JONES      15025老                                                                                                                                                                                      
+MARTIN     14846老                                                                                                                                                                                      
+BLAKE      14996老                                                                                                                                                                                      
+CLARK      14957老                                                                                                                                                                                      
+SCOTT      12732老                                                                                                                                                                                      
+KING       14796老                                                                                                                                                                                      
+TURNER     14866老                                                                                                                                                                                      
+ADAMS      12732老                                                                                                                                                                                      
+JAMES      14780老                                                                                                                                                                                      
+FORD       14780老                                                                                                                                                                                      
+MILLER     14729老                                                                                                                                                                                      
+
+14 rows selected.
+
+SCOTT>SPOOL OFF

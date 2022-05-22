@@ -1,0 +1,52 @@
+SCOTT>SELECT ENAME, TO_CHAR(HIREDATE,'YYYY"년" MM"월" DD"일" DY"요일"')
+  2  FROM EMP;
+
+ENAME      TO_CHAR(HIREDATE,'YYYY"년"MM"월"DD"일"DY"요일"')                                                                                                                                             
+---------- ------------------------------------------------------------                                                                                                                                 
+SMITH      1980년 12월 17일 수요일                                                                                                                                                                      
+ALLEN      1981년 02월 20일 금요일                                                                                                                                                                      
+WARD       1981년 02월 22일 일요일                                                                                                                                                                      
+JONES      1981년 04월 02일 목요일                                                                                                                                                                      
+MARTIN     1981년 09월 28일 월요일                                                                                                                                                                      
+BLAKE      1981년 05월 01일 금요일                                                                                                                                                                      
+CLARK      1981년 06월 09일 화요일                                                                                                                                                                      
+SCOTT      1987년 07월 13일 월요일                                                                                                                                                                      
+KING       1981년 11월 17일 화요일                                                                                                                                                                      
+TURNER     1981년 09월 08일 화요일                                                                                                                                                                      
+ADAMS      1987년 07월 13일 월요일                                                                                                                                                                      
+JAMES      1981년 12월 03일 목요일                                                                                                                                                                      
+FORD       1981년 12월 03일 목요일                                                                                                                                                                      
+MILLER     1982년 01월 23일 토요일                                                                                                                                                                      
+
+14 rows selected.
+
+SCOTT>SELECT TO_CHAR(SYSDATE,'YYYY-MM-DD DAY AM HH:MI:SS')
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'YYYY-MM-DDDAYAMHH:MI:SS')                                                                                                                                                              
+------------------------------------------------------------------------------                                                                                                                          
+2022-05-22 일요일 오전 12:45:27                                                                                                                                                                         
+
+SCOTT>SELECT ENAME, TO_CHAR(SAL,'L999,999')
+  2  FROM EMP;
+
+ENAME      TO_CHAR(SAL,'L999,999')                                                                                                                                                                      
+---------- ------------------------------------                                                                                                                                                         
+SMITH                  ￦800                                                                                                                                                                            
+ALLEN                ￦1,600                                                                                                                                                                            
+WARD                 ￦1,250                                                                                                                                                                            
+JONES                ￦2,975                                                                                                                                                                            
+MARTIN               ￦1,250                                                                                                                                                                            
+BLAKE                ￦2,850                                                                                                                                                                            
+CLARK                ￦2,450                                                                                                                                                                            
+SCOTT                ￦3,000                                                                                                                                                                            
+KING                 ￦5,000                                                                                                                                                                            
+TURNER               ￦1,500                                                                                                                                                                            
+ADAMS                ￦1,100                                                                                                                                                                            
+JAMES                  ￦950                                                                                                                                                                            
+FORD                 ￦3,000                                                                                                                                                                            
+MILLER               ￦1,300                                                                                                                                                                            
+
+14 rows selected.
+
+SCOTT>SPOOL OFF
