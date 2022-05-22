@@ -1,0 +1,207 @@
+SCOTT>SELECT SUBSTR(HIREDATE,1,2) 년도, COUNT(*) "입사자(명)"
+  2  FROM EMP
+  3  GROUP BY SUBSTR(HIREDATE,1,2);
+
+년도             입사자(명)                                                                                                                                                                             
+---------------- ----------                                                                                                                                                                             
+87                        2                                                                                                                                                                             
+81                       10                                                                                                                                                                             
+82                        1                                                                                                                                                                             
+80                        1                                                                                                                                                                             
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT SUBSTR(HIREDATE,1,2) 년도, COUNT(*) "입사자(명)"
+  2  FROM EMP
+  3  GROUP BY SUBSTR(HIREDATE,1,2)
+  4* ORDER BY SUBSTR(HIREDATE,1,2)
+SCOTT>/
+
+년도             입사자(명)                                                                                                                                                                             
+---------------- ----------                                                                                                                                                                             
+80                        1                                                                                                                                                                             
+81                       10                                                                                                                                                                             
+82                        1                                                                                                                                                                             
+87                        2                                                                                                                                                                             
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT TO_CHAR(HIREDATE,'YY/MM') "년/월", COUNT(*) "입사자(명)"
+  2  FROM EMP
+  3* GROUP BY TO_CHAR(HIREDATE,'YY/MM')
+SCOTT>/
+
+년/월      입사자(명)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+81/04               1                                                                                                                                                                                   
+82/01               1                                                                                                                                                                                   
+87/07               2                                                                                                                                                                                   
+81/05               1                                                                                                                                                                                   
+80/12               1                                                                                                                                                                                   
+81/02               2                                                                                                                                                                                   
+81/09               2                                                                                                                                                                                   
+81/06               1                                                                                                                                                                                   
+81/11               1                                                                                                                                                                                   
+81/12               2                                                                                                                                                                                   
+
+10 rows selected.
+
+SCOTT>SELECT TO_CHAR(HIREDATE,'YY/MM') "년/월",COUNT(*) "입사자(명)"
+  2  FROM EMP
+  3  WHERE COMM IS NOT NULL
+  4  GROUP BY TO_CHAR(HIREDATE,'YY/MM');
+
+년/월      입사자(명)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+81/02               2                                                                                                                                                                                   
+81/09               2                                                                                                                                                                                   
+
+SCOTT>SELECT TO_CHAR(HIREDATE,'YY/MM') "년/월",COUNT(*) "입사자(명)", AVG(SAL) 평균급여
+  2  FROM EMP
+  3  GROUP BY TO_CHAR(HIREDATE,'YY/MM');
+
+년/월      입사자(명)   평균급여                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+81/04               1       2975                                                                                                                                                                        
+82/01               1       1300                                                                                                                                                                        
+87/07               2       2050                                                                                                                                                                        
+81/05               1       2850                                                                                                                                                                        
+80/12               1        800                                                                                                                                                                        
+81/02               2       1425                                                                                                                                                                        
+81/09               2       1375                                                                                                                                                                        
+81/06               1       2450                                                                                                                                                                        
+81/11               1       5000                                                                                                                                                                        
+81/12               2       1975                                                                                                                                                                        
+
+10 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT TO_CHAR(HIREDATE,'YY/MM') "년/월",COUNT(*) "입사자(명)", AVG(SAL) 평균급여
+  2  FROM EMP
+  3  GROUP BY TO_CHAR(HIREDATE,'YY/MM')
+  4* ORDER BY TO_CHAR(HIREDATE,'YY/MM')
+SCOTT>/
+
+년/월      입사자(명)   평균급여                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+80/12               1        800                                                                                                                                                                        
+81/02               2       1425                                                                                                                                                                        
+81/04               1       2975                                                                                                                                                                        
+81/05               1       2850                                                                                                                                                                        
+81/06               1       2450                                                                                                                                                                        
+81/09               2       1375                                                                                                                                                                        
+81/11               1       5000                                                                                                                                                                        
+81/12               2       1975                                                                                                                                                                        
+82/01               1       1300                                                                                                                                                                        
+87/07               2       2050                                                                                                                                                                        
+
+10 rows selected.
+
+SCOTT>SELECT DEPTNO, COUNT(*)
+  2  FROM EMP
+  3  GROUP BY DEPTNO;
+
+    DEPTNO   COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+        30          6                                                                                                                                                                                   
+        20          5                                                                                                                                                                                   
+        10          3                                                                                                                                                                                   
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO, COUNT(*)
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4* HAVING COUNT(*)<5
+SCOTT>/
+
+    DEPTNO   COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+        10          3                                                                                                                                                                                   
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT MGR 매니저번호, COUNT(*) 인원수
+  2  FROM EMP
+  3  GROUP BY MGR
+  4* ORDER BY MGR
+SCOTT>/
+
+매니저번호     인원수                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+      7566          2                                                                                                                                                                                   
+      7698          5                                                                                                                                                                                   
+      7782          1                                                                                                                                                                                   
+      7788          1                                                                                                                                                                                   
+      7839          3                                                                                                                                                                                   
+      7902          1                                                                                                                                                                                   
+                    1                                                                                                                                                                                   
+
+7 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT MGR 매니저번호, COUNT(*) 인원수
+  2  FROM EMP
+  3  WHERE MGR IS NOT NULL
+  4  GROUP BY MGR
+  5* ORDER BY MGR
+SCOTT>/
+
+매니저번호     인원수                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+      7566          2                                                                                                                                                                                   
+      7698          5                                                                                                                                                                                   
+      7782          1                                                                                                                                                                                   
+      7788          1                                                                                                                                                                                   
+      7839          3                                                                                                                                                                                   
+      7902          1                                                                                                                                                                                   
+
+6 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT MGR 매니저번호, MAX(SAL) 최고급여
+  2  FROM EMP
+  3  WHERE MGR IS NOT NULL
+  4  GROUP BY MGR
+  5* ORDER BY MGR
+SCOTT>/
+
+매니저번호   최고급여                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+      7566       3000                                                                                                                                                                                   
+      7698       1600                                                                                                                                                                                   
+      7782       1300                                                                                                                                                                                   
+      7788       1100                                                                                                                                                                                   
+      7839       2975                                                                                                                                                                                   
+      7902        800                                                                                                                                                                                   
+
+6 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT MGR 매니저번호, MAX(SAL) 최고급여
+  2  FROM EMP
+  3  WHERE MGR IS NOT NULL
+  4  GROUP BY MGR
+  5  HAVING MAX(SAL) BETWEEN 1000 AND 2000
+  6* ORDER BY MGR
+SCOTT>/
+
+매니저번호   최고급여                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+      7698       1600                                                                                                                                                                                   
+      7782       1300                                                                                                                                                                                   
+      7788       1100                                                                                                                                                                                   
+
+SCOTT>SPOOL OFF
