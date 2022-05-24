@@ -1,0 +1,149 @@
+SCOTT>SELECT EMPNO, ENAME, JOB, SAL,
+  2   DECODE(JOB, 'ANALYST',SAL*1.05,
+  3  'SALESMAN',SAL*1.1,
+  4   'MANAGER',SAL*1.15,
+  5   'CLERK',SAL*1.2,
+  6   SAL) AS UPSAL
+  7   FROM EMP;
+
+   EMPNO ENAME      JOB               SAL      UPSAL                                                                                                                                                    
+-------- ---------- ---------- ---------- ----------                                                                                                                                                    
+    7369 SMITH      CLERK             800        960                                                                                                                                                    
+    7499 ALLEN      SALESMAN         1600       1760                                                                                                                                                    
+    7521 WARD       SALESMAN         1250       1375                                                                                                                                                    
+    7566 JONES      MANAGER          2975    3421.25                                                                                                                                                    
+    7654 MARTIN     SALESMAN         1250       1375                                                                                                                                                    
+    7698 BLAKE      MANAGER          2850     3277.5                                                                                                                                                    
+    7782 CLARK      MANAGER          2450     2817.5                                                                                                                                                    
+    7788 SCOTT      ANALYST          3000       3150                                                                                                                                                    
+    7839 KING       PRESIDENT        5000       5000                                                                                                                                                    
+    7844 TURNER     SALESMAN         1500       1650                                                                                                                                                    
+    7876 ADAMS      CLERK            1100       1320                                                                                                                                                    
+    7900 JAMES      CLERK             950       1140                                                                                                                                                    
+    7902 FORD       ANALYST          3000       3150                                                                                                                                                    
+    7934 MILLER     CLERK            1300       1560                                                                                                                                                    
+
+14 rows selected.
+
+SCOTT>SELECT ENAME, DEPTNO,
+  2  CASE DEPTNO WHEN 10 THEN 'ACCOUNTING'
+  3  		WHEN 20 THEN 'RESEARCH'
+  4  		WHEN 30 THEN 'SALES'
+  5  		WHEN 40 THEN 'OPERATIONS'
+  6  		END AS DNAME
+  7  FROM EMP;
+
+ENAME          DEPTNO DNAME                                                                                                                                                                             
+---------- ---------- --------------------                                                                                                                                                              
+SMITH              20 RESEARCH                                                                                                                                                                          
+ALLEN              30 SALES                                                                                                                                                                             
+WARD               30 SALES                                                                                                                                                                             
+JONES              20 RESEARCH                                                                                                                                                                          
+MARTIN             30 SALES                                                                                                                                                                             
+BLAKE              30 SALES                                                                                                                                                                             
+CLARK              10 ACCOUNTING                                                                                                                                                                        
+SCOTT              20 RESEARCH                                                                                                                                                                          
+KING               10 ACCOUNTING                                                                                                                                                                        
+TURNER             30 SALES                                                                                                                                                                             
+ADAMS              20 RESEARCH                                                                                                                                                                          
+JAMES              30 SALES                                                                                                                                                                             
+FORD               20 RESEARCH                                                                                                                                                                          
+MILLER             10 ACCOUNTING                                                                                                                                                                        
+
+14 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, DEPTNO,
+  2  CASE WHEN DEPTNO=10 THEN 'ACCOUNTING'
+  3  	WHEN DEPTNO=20 THEN 'RESEARCH'
+  4  	WHEN DEPTNO=30 THEN 'SALES'
+  5   	WHEN DEPTNO=40 THEN 'OPERATIONS'
+  6  	END AS DNAME
+  7* FROM EMP
+SCOTT>/
+
+ENAME          DEPTNO DNAME                                                                                                                                                                             
+---------- ---------- --------------------                                                                                                                                                              
+SMITH              20 RESEARCH                                                                                                                                                                          
+ALLEN              30 SALES                                                                                                                                                                             
+WARD               30 SALES                                                                                                                                                                             
+JONES              20 RESEARCH                                                                                                                                                                          
+MARTIN             30 SALES                                                                                                                                                                             
+BLAKE              30 SALES                                                                                                                                                                             
+CLARK              10 ACCOUNTING                                                                                                                                                                        
+SCOTT              20 RESEARCH                                                                                                                                                                          
+KING               10 ACCOUNTING                                                                                                                                                                        
+TURNER             30 SALES                                                                                                                                                                             
+ADAMS              20 RESEARCH                                                                                                                                                                          
+JAMES              30 SALES                                                                                                                                                                             
+FORD               20 RESEARCH                                                                                                                                                                          
+MILLER             10 ACCOUNTING                                                                                                                                                                        
+
+14 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, DEPTNO, SAL,
+  2  CASE WHEN SAL >=700 AND SAL <=1200 THEN 'LEVEL1'
+  3  	WHEN SAL <=1400 THEN 'LEVEL2'
+  4  	WHEN SAL <=2000 THEN 'LEVEL3'
+  5  	WHEN SAL <=3000 THEN 'LEVEL4'
+  6  	ELSE 'LEVEL5'
+  7  	END AS GRADE
+  8* FROM EMP
+SCOTT>/ 
+
+ENAME          DEPTNO        SAL GRADE                                                                                                                                                                  
+---------- ---------- ---------- ------------                                                                                                                                                           
+SMITH              20        800 LEVEL1                                                                                                                                                                 
+ALLEN              30       1600 LEVEL3                                                                                                                                                                 
+WARD               30       1250 LEVEL2                                                                                                                                                                 
+JONES              20       2975 LEVEL4                                                                                                                                                                 
+MARTIN             30       1250 LEVEL2                                                                                                                                                                 
+BLAKE              30       2850 LEVEL4                                                                                                                                                                 
+CLARK              10       2450 LEVEL4                                                                                                                                                                 
+SCOTT              20       3000 LEVEL4                                                                                                                                                                 
+KING               10       5000 LEVEL5                                                                                                                                                                 
+TURNER             30       1500 LEVEL3                                                                                                                                                                 
+ADAMS              20       1100 LEVEL1                                                                                                                                                                 
+JAMES              30        950 LEVEL1                                                                                                                                                                 
+FORD               20       3000 LEVEL4                                                                                                                                                                 
+MILLER             10       1300 LEVEL2                                                                                                                                                                 
+
+14 rows selected.
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, DEPTNO, SAL,
+  2  CASE WHEN SAL <1000 THEN SAL*1.08
+  3  	WHEN SAL <=2000 THEN SAL*1.05
+  4  	WHEN SAL <=3000 THEN SAL*1.03
+  5  	ELSE SAL*1.01
+  6  	END AS UPSAL
+  7* FROM EMP
+SCOTT>/
+
+ENAME          DEPTNO        SAL      UPSAL                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+SMITH              20        800        864                                                                                                                                                             
+ALLEN              30       1600       1680                                                                                                                                                             
+WARD               30       1250     1312.5                                                                                                                                                             
+JONES              20       2975    3064.25                                                                                                                                                             
+MARTIN             30       1250     1312.5                                                                                                                                                             
+BLAKE              30       2850     2935.5                                                                                                                                                             
+CLARK              10       2450     2523.5                                                                                                                                                             
+SCOTT              20       3000       3090                                                                                                                                                             
+KING               10       5000       5050                                                                                                                                                             
+TURNER             30       1500       1575                                                                                                                                                             
+ADAMS              20       1100       1155                                                                                                                                                             
+JAMES              30        950       1026                                                                                                                                                             
+FORD               20       3000       3090                                                                                                                                                             
+MILLER             10       1300       1365                                                                                                                                                             
+
+14 rows selected.
+
+SCOTT>SPOOL OFF
