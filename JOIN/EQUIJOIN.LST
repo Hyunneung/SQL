@@ -1,0 +1,78 @@
+SCOTT>SELECT *
+  2  FROM EMP E, DEPT D
+  3  WHERE E.DEPTNO=D.DEPTNO;
+
+   EMPNO ENAME      JOB             MGR HIREDATE        SAL       COMM     DEPTNO     DEPTNO DNAME      LOC                                                                                             
+-------- ---------- ---------- -------- -------- ---------- ---------- ---------- ---------- ---------- ----------                                                                                      
+    7782 CLARK      MANAGER        7839 81/06/09       2450                    10         10 ACCOUNTING NEW YORK                                                                                        
+    7839 KING       PRESIDENT           81/11/17       5000                    10         10 ACCOUNTING NEW YORK                                                                                        
+    7934 MILLER     CLERK          7782 82/01/23       1300                    10         10 ACCOUNTING NEW YORK                                                                                        
+    7566 JONES      MANAGER        7839 81/04/02       2975                    20         20 RESEARCH   DALLAS                                                                                          
+    7902 FORD       ANALYST        7566 81/12/03       3000                    20         20 RESEARCH   DALLAS                                                                                          
+    7876 ADAMS      CLERK          7788 87/07/13       1100                    20         20 RESEARCH   DALLAS                                                                                          
+    7369 SMITH      CLERK          7902 80/12/17        800                    20         20 RESEARCH   DALLAS                                                                                          
+    7788 SCOTT      ANALYST        7566 87/07/13       3000                    20         20 RESEARCH   DALLAS                                                                                          
+    7521 WARD       SALESMAN       7698 81/02/22       1250        500         30         30 SALES      CHICAGO                                                                                         
+    7844 TURNER     SALESMAN       7698 81/09/08       1500          0         30         30 SALES      CHICAGO                                                                                         
+    7499 ALLEN      SALESMAN       7698 81/02/20       1600        300         30         30 SALES      CHICAGO                                                                                         
+    7900 JAMES      CLERK          7698 81/12/03        950                    30         30 SALES      CHICAGO                                                                                         
+    7698 BLAKE      MANAGER        7839 81/05/01       2850                    30         30 SALES      CHICAGO                                                                                         
+    7654 MARTIN     SALESMAN       7698 81/09/28       1250       1400         30         30 SALES      CHICAGO                                                                                         
+
+14 rows selected.
+
+SCOTT>SELECT E.ENAME, D.DNAME
+  2  FROM EMP E, DEPT D
+  3  WHERE E.DEPTNO=D.DEPTNO
+  4  AND E.ENAME='SCOTT';
+
+ENAME      DNAME                                                                                                                                                                                        
+---------- ----------                                                                                                                                                                                   
+SCOTT      RESEARCH                                                                                                                                                                                     
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT E.ENAME, E.SAL
+  2  FROM EMP E, DEPT D
+  3  WHERE E.DEPTNO = D.DEPTNO
+  4* AND D.LOC='NEW YORK'
+SCOTT>/
+
+ENAME             SAL                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+CLARK            2450                                                                                                                                                                                   
+KING             5000                                                                                                                                                                                   
+MILLER           1300                                                                                                                                                                                   
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT E.ENAME, E.HIREDATE
+  2  FROM EMP E, DEPT D
+  3  WHERE E.DEPTNO = D.DEPTNO
+  4* AND D.DNAME='ACCOUNTING'
+SCOTT>/
+
+ENAME      HIREDATE                                                                                                                                                                                     
+---------- --------                                                                                                                                                                                     
+CLARK      81/06/09                                                                                                                                                                                     
+KING       81/11/17                                                                                                                                                                                     
+MILLER     82/01/23                                                                                                                                                                                     
+
+SCOTT>ED
+Wrote file afiedt.buf
+
+  1  SELECT E.ENAME, D.DNAME
+  2  FROM EMP E, DEPT D
+  3  WHERE E.DEPTNO = D.DEPTNO
+  4* AND E.JOB='MANAGER'
+SCOTT>/
+
+ENAME      DNAME                                                                                                                                                                                        
+---------- ----------                                                                                                                                                                                   
+CLARK      ACCOUNTING                                                                                                                                                                                   
+JONES      RESEARCH                                                                                                                                                                                     
+BLAKE      SALES                                                                                                                                                                                        
+
+SCOTT>SPOOL OFF
