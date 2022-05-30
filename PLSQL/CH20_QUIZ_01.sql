@@ -1,0 +1,19 @@
+--EMP테이블 활용해 연봉 계산하기 (단, 연봉 = 급여*12+커미션)
+
+DECLARE
+	VEMP EMP%ROWTYPE;
+	ANNSAL NUMBER(7,2);
+BEGIN
+	SELECT *
+	INTO VEMP
+	FROM EMP
+	WHERE EMPNO = 7788;
+	
+	ANNSAL := VEMP.SAL*12+NVL(VEMP.COMM,0);
+
+	DBMS_OUTPUT.PUT_LINE('사번 / 이름 / 연봉');
+	DBMS_OUTPUT.PUT_LINE('--------------------');
+	DBMS_OUTPUT.PUT_LINE(VEMP.EMPNO || ' / ' || VEMP.ENAME || ' / ' || ANNSAL);
+
+END;
+/
